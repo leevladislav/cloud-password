@@ -1,0 +1,73 @@
+<p class="title">Registration</p>
+
+<form [formGroup]="form" (ngSubmit)="registration()">
+  <mat-form-field>
+    <input matInput placeholder="Email:" formControlName="email" required />
+    <mat-error>
+      <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <fieldset formGroupName="newPassword">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password:"
+        formControlName="password"
+        [type]="hideNewPassword ? 'password' : 'text'"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideNewPassword = !hideNewPassword"
+        type="button"
+        class="toggle-password"
+      >
+        <mat-icon>{{ hideNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error>
+        <app-validator-message
+          [key]="'password'"
+          [field]="form.get('newPassword')?.get('password')"
+        ></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Password:"
+        formControlName="repeatPassword"
+        [type]="hideRepeatNewPassword ? 'password' : 'text'"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
+        type="button"
+        class="toggle-password"
+      >
+        <mat-icon>{{ hideRepeatNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error>
+        <app-validator-message
+          [key]="'repeatPassword'"
+          [field]="form.get('newPassword')?.get('repeatPassword')"
+        ></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+  </fieldset>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || form.disabled"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+
+vladislavlee.xx@gmail.com ln0932389069

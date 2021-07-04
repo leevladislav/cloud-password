@@ -1,0 +1,94 @@
+// @import 'variables';
+
+// .auth-layout {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   min-height: 100vh;
+//   background-color: $primary-background;
+
+//   .item-header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     background-color: $accent-background;
+
+//     .logo {
+//       padding: 20px 14px;
+//       display: block;
+//       color: $light-text-color;
+//     }
+
+//     ul {
+//       display: flex;
+//       align-items: center;
+
+//       li {
+//         a {
+//           padding: 20px 14px;
+//           display: block;
+//           color: $light-text-color;
+//         }
+//       }
+//     }
+//   }
+
+//   .item-body {
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-grow: 1;
+
+//     &:before {
+//       content: '';
+//       position: absolute;
+//       right: 6%;
+//       bottom: 6%;
+//       background-image: url('/assets/images/login/login.svg');
+//       background-repeat: no-repeat;
+//       background-position: center;
+//       background-size: contain;
+//       width: 50vh;
+//       height: 50vh;
+//       transform: translateY(0px);
+//       animation: float 5s ease-in-out infinite;
+
+//       @media screen and (max-width: 576px) {
+//         content: none;
+//       }
+//     }
+
+//     .auth-form {
+//       z-index: 1;
+//     }
+
+//     ::ng-deep {
+//       form {
+//         min-width: 320px;
+
+//         .form-layout {
+//           padding: 20px;
+//           border-radius: $border-radius;
+//           box-shadow: $primary-box-shadow;
+//           background-color: $light-background;
+
+//           .title {
+//             text-align: center;
+//             font-size: 16px;
+//           }
+
+//           .form-body {
+//             display: flex;
+//             flex-direction: column;
+//           }
+
+//           .form-footer {
+//             margin: 10px;
+//             text-align: center;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

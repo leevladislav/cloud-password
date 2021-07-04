@@ -1,0 +1,53 @@
+// @import 'variables';
+
+// .side-bar-layout {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 100%;
+//   background-color: $primary-background;
+
+//   ul {
+//     li {
+//       &.user {
+//         padding: 16px 0;
+//         text-align: center;
+
+//         .name {
+//           font-size: 16px;
+//           color: $primary-text-color;
+//           margin: 0;
+//         }
+//       }
+
+//       a {
+//         padding: 12px 14px;
+//         display: block;
+//         color: $primary-link-color;
+//         border-left: 6px solid transparent;
+//       }
+
+//       &.active a,
+//       a:hover {
+//         background-color: $light-background;
+//         border-left-color: $accent-background;
+//         color: $primary-link-color;
+//       }
+//     }
+//   }
+
+//   button {
+//     width: 100%;
+//     margin: 0 auto 20px;
+//   }
+// }
+
+// .mat-drawer-container {
+//   .mat-drawer-content {
+//     padding: 0;
+
+//     .container {
+//       padding: 20px;
+//     }
+//   }
+// }

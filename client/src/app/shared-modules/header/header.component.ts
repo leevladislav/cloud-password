@@ -1,0 +1,92 @@
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {MatDialog} from '@angular/material/dialog';
+import {Subscription} from 'rxjs';
+
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
+})
+export class HeaderComponent implements OnInit, OnDestroy {
+  @Output() onToggleSidebar = new EventEmitter<boolean>();
+  @Input() isOpenedSidebar!: boolean;
+  // mobileQuery: MediaQueryList;
+  // mobileQueryListener: () => void;
+  // balance = 0;
+  // expenses = 0;
+  // wallets: Wallet[];
+
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+    private media: MediaMatcher,
+    // private walletsService: WalletsService,
+    // private expensesService: ExpensesService,
+    private dialog: MatDialog
+  ) {
+  }
+
+  ngOnInit(): void {
+    // this.getWallets();
+    // this.getExpenses();
+    // this.mobileWidthListener();
+  }
+
+  // getWallets(): void {
+  //   const walletsSub = this.walletsService.wallets$
+  //     .subscribe((wallets: Wallet[]) => {
+  //       this.wallets = [...wallets || []];
+  //       this.countBalance();
+  //     });
+
+  //   this.subscriptions.push(walletsSub);
+  // }
+
+  // countBalance(): void {
+  //   this.balance = this.wallets.reduce((total, item) => total += item.budget, 0);
+  // }
+
+  // getExpenses(): void {
+  //   const expensesSub = this.expensesService.expenses$
+  //     .subscribe((expenses: Expense[]) => this.countExpenses(expenses));
+
+  //   this.subscriptions.push(expensesSub);
+  // }
+
+  // countExpenses(expenses): void {
+  //   this.expenses = expenses.reduce((total, item) => total += item.expense, 0);
+  // }
+
+  // mobileWidthListener(): void {
+  //   this.mobileQuery = this.media.matchMedia('(max-width: 1024px)');
+  //   this.mobileQueryListener = () => {
+  //     if (this.mobileQuery.matches && this.isOpenedSidebar) {
+  //       this.toggleSidebar(this.isOpenedSidebar = !this.isOpenedSidebar);
+  //     }
+
+  //     if (!this.mobileQuery.matches && !this.isOpenedSidebar) {
+  //       this.toggleSidebar(this.isOpenedSidebar = !this.isOpenedSidebar);
+  //     }
+  //   };
+
+  //   this.mobileQuery.addEventListener('change', this.mobileQueryListener);
+  // }
+
+  toggleSidebar(event: boolean): void {
+    this.onToggleSidebar.emit(event);
+  }
+
+  addIncome(): void {
+  //   this.dialog.open(ModalAddIncomeComponent, {
+  //     data: this.wallets,
+  //     panelClass: ['primary-modal', 'modal-md'],
+  //     autoFocus: false
+  //   });
+  }
+
+  ngOnDestroy(): void {
+    // this.mobileQuery.removeEventListener('change', this.mobileQueryListener);
+    // unsubscribe(this.subscriptions);
+  }
+}
