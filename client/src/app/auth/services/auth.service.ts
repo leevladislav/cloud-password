@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { User } from '../interfaces/user.interface';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
+
+import {User} from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,10 @@ export class AuthService {
     return this.http.post<User>('/api/auth/register', user);
   }
 
-  login(user: User): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>('/api/auth/login', user)
+  login(user: User): Observable<{token: string}> {
+    return this.http.post<{token: string}>('/api/auth/login', user)
       .pipe(
-        tap(
-          ({ token }) => {
+        tap(({token}) => {
             localStorage.setItem('auth-token', token);
             this.setToken(token);
           }
@@ -29,7 +29,7 @@ export class AuthService {
       );
   }
 
-  setToken(token: string | null) {
+  setToken(token: string) {
     this.token = token;
   }
 
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   logout() {
-    this.setToken(null);
+    this.token = null;
     localStorage.clear();
   }
 }

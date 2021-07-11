@@ -75,6 +75,7 @@
               "browserTarget": "cloud-password:build:production"
             },
             "development": {
+              "optimization": false,
               "browserTarget": "cloud-password:build:development"
             }
           },

@@ -1,73 +1,76 @@
-<p class="title">Registration</p>
+<div class="bg-gray-50 rounded-md p-4 w-screen max-w-sm">
+  <p class="text-lg text-center">Registration</p>
 
-<form [formGroup]="form" (ngSubmit)="registration()">
-  <mat-form-field>
-    <input matInput placeholder="Email:" formControlName="email" required />
-    <mat-error>
-      <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
-    </mat-error>
-  </mat-form-field>
-
-  <fieldset formGroupName="newPassword">
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Password:"
-        formControlName="password"
-        [type]="hideNewPassword ? 'password' : 'text'"
-        required
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hideNewPassword = !hideNewPassword"
-        type="button"
-        class="toggle-password"
-      >
-        <mat-icon>{{ hideNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
+  <form [formGroup]="form" (ngSubmit)="registration()" class="flex flex-col items-center">
+    <mat-form-field class="w-full mb-2">
+      <input matInput placeholder="Email:" formControlName="email" required />
       <mat-error>
-        <app-validator-message
-          [key]="'password'"
-          [field]="form.get('newPassword')?.get('password')"
-        ></app-validator-message>
+        <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Password:"
-        formControlName="repeatPassword"
-        [type]="hideRepeatNewPassword ? 'password' : 'text'"
-        required
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
-        type="button"
-        class="toggle-password"
-      >
-        <mat-icon>{{ hideRepeatNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-      <mat-error>
-        <app-validator-message
-          [key]="'repeatPassword'"
-          [field]="form.get('newPassword')?.get('repeatPassword')"
-        ></app-validator-message>
-      </mat-error>
-    </mat-form-field>
-  </fieldset>
+    <fieldset formGroupName="newPassword">
+      <mat-form-field class="w-full mb-2">
+        <input
+          matInput
+          placeholder="Password:"
+          formControlName="password"
+          [type]="hideNewPassword ? 'password' : 'text'"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hideNewPassword = !hideNewPassword"
+          type="button"
+          class="toggle-password"
+        >
+          <mat-icon>{{ hideNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error>
+          <app-validator-message
+            [key]="'password'"
+            [field]="form.get('newPassword')?.get('password')"
+          ></app-validator-message>
+        </mat-error>
+      </mat-form-field>
 
-  <button
-    mat-raised-button
-    color="primary"
-    [disabled]="form.invalid || form.disabled"
-    type="submit"
-  >
-    Submit
-  </button>
-</form>
+      <mat-form-field class="w-full mb-2">
+        <input
+          matInput
+          placeholder="Password:"
+          formControlName="repeatPassword"
+          [type]="hideRepeatNewPassword ? 'password' : 'text'"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
+          type="button"
+          class="toggle-password"
+        >
+          <mat-icon>{{ hideRepeatNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error>
+          <app-validator-message
+            [key]="'repeatPassword'"
+            [field]="form.get('newPassword')?.get('repeatPassword')"
+          ></app-validator-message>
+        </mat-error>
+      </mat-form-field>
+    </fieldset>
 
-vladislavlee.xx@gmail.com ln0932389069
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid || form.disabled"
+      type="submit"
+      class="w-full"
+    >
+      Submit
+    </button>
+
+    <a class="mt-4" routerLink="/auth/login">Log in</a>
+  </form>
+</div>

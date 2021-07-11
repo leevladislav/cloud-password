@@ -1,0 +1,11 @@
+<app-modal-header [title]="data.title"></app-modal-header>
+
+<div class="dialog-content">
+  <p class="message">{{ data.message }}</p>
+
+  <mat-dialog-actions>
+    <button mat-button class="btn btn-primary" [mat-dialog-close]="false">
+      {{ data.btnText || "Закрыть" }}
+    </button>
+  </mat-dialog-actions>
+</div>

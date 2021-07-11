@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
-import { unsubscribe } from 'src/app/core/utils/unsubscriber';
-import { AuthService } from '../../services/auth.service';
+import {AuthService} from '../../services/auth.service';
+import {ModalInfoService} from '../../../core/services/modal-info.service';
+import {unsubscribe} from '../../../core/utils/unsubscriber';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    private modalInfoService: ModalInfoService,
   ) {
   }
 
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         () => this.router.navigate(['/expenses']),
         (error) => {
-          // this.openModalService.openModal(null, error.error.message);
+          this.modalInfoService.onError(error.error.message);
           this.form.enable();
         });
     this.subscriptions.push(loginSub);

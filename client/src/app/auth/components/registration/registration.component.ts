@@ -1,13 +1,13 @@
-import { OnDestroy } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
-import { passwordPattern } from 'src/app/core/constants/patterns.const';
-import { unsubscribe } from 'src/app/core/utils/unsubscriber';
-import { matchPassword } from 'src/app/shared-modules/validator-message/utils/match-password';
-import { AuthService } from '../../services/auth.service';
+import {AuthService} from '../../services/auth.service';
+import {passwordPattern} from '../../../core/constants/patterns.const';
+import {matchPassword} from '../../../shared-modules/validator-message/utils/match-password';
+import {unsubscribe} from '../../../core/utils/unsubscriber';
 
 @Component({
   selector: 'app-registration',
@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         ],
         repeatPassword: ['', [Validators.required]]
       },
-      { validators: [matchPassword()] }
+      {validators: [matchPassword()]}
     )
   });
 
@@ -43,7 +43,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
