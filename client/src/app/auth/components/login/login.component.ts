@@ -6,7 +6,7 @@ import {Subscription} from 'rxjs';
 import {AuthService} from '../../services/auth.service';
 import {ModalInfoService} from '../../../core/services/modal-info.service';
 import {unsubscribe} from '../../../core/utils/unsubscriber';
-import {UserLoginInterface} from "../../interfaces/user-login.interface";
+import {UserLoginInterface} from '../../interfaces/user-login.interface';
 
 @Component({
   selector: 'app-login',

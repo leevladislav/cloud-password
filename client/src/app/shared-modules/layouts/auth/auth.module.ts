@@ -9,9 +9,9 @@ import {MatButtonModule} from '@angular/material/button';
 
 import {AuthRoutingModule} from './auth.routing.module';
 import {AuthComponent} from './auth.component';
-import {LoginComponent} from './components/login/login.component';
-import {ValidatorMessageModule} from '../shared-modules/validator-message/validator-message.module';
-import {RegistrationComponent} from './components/registration/registration.component';
+import {LoginComponent} from '../../../auth/components/login/login.component';
+import {ValidatorMessageModule} from '../../validator-message/validator-message.module';
+import {RegistrationComponent} from '../../../auth/components/registration/registration.component';
 
 
 @NgModule({

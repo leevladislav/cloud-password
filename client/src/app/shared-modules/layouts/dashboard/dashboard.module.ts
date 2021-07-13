@@ -1,23 +1,23 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
-import {DashboardComponent} from './dashboard.component';
+import {HeaderComponent} from './components/header/header.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {HeaderModule} from '../shared-modules/header/header.module';
+import {DashboardComponent} from './dashboard.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MatSidenavModule,
-    HeaderModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class DashboardModule {

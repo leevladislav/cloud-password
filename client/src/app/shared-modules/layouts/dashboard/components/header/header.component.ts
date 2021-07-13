@@ -3,9 +3,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 
-import {UserInterface} from '../../auth/interfaces/user.interface';
-import {ProfileService} from '../../dashboard/profile/services/profile.service';
-import {AuthService} from '../../auth/services/auth.service';
+import {UserInterface} from '../../../../../auth/interfaces/user.interface';
+import {ProfileService} from '../../../../../dashboard/profile/services/profile.service';
+import {AuthService} from '../../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ import {AuthService} from '../../auth/services/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  links = [
+  links: {url: string, name: string}[] = [
     {url: '/all-passwords', name: 'All Passwords'},
 
     {url: '/wallets', name: 'Wallets'},

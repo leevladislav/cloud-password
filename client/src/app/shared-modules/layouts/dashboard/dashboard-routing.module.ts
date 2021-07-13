@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'all-passwords',
-        loadChildren: () => import('./all-passwords/all-passwords.module').then(m => m.AllPasswordsModule)
+        loadChildren: () => import('../../../dashboard/all-passwords/all-passwords.module').then(m => m.AllPasswordsModule)
       },
     ]
   }

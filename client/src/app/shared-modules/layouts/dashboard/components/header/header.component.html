@@ -1,25 +1,23 @@
-<div>
-  <ul class="header-layout">
-    <li class="logo"></li>
+<div class="flex align-center">
+    <div class="logo">logo</div>
 
-    <li class="user">
+    <div class="user">
       <p class="name" *ngIf="profile$ | async as profile">
         {{profile.name}}
       </p>
-    </li>
+    </div>
 
-    <li *ngFor="let link of links" routerLinkActive="active">
+    <div *ngFor="let link of links" routerlinkActive="active">
       <a [routerLink]="[link.url]">{{link.name}}</a>
-    </li>
+    </div>
 
-    <li class="menu">
+    <div class="menu">
       <button mat-stroked-button (click)="toggleSidebar()">
         <mat-icon>menu</mat-icon>
       </button>
-    </li>
+    </div>
 
-    <li class="logout">
+    <div class="logout">
       <button mat-raised-button color="accent" (click)="logout($event)">Log out</button>
-    </li>
-  </ul>
+    </div>
 </div>

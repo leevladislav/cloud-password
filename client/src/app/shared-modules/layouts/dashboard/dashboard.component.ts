@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
-import {ProfileService} from "./profile/services/profile.service";
-import {UserInterface} from "../auth/interfaces/user.interface";
+import {ProfileService} from '../../../dashboard/profile/services/profile.service';
+import {UserInterface} from '../../../auth/interfaces/user.interface';
 
 @Component({
   selector: 'app-dashboard',
