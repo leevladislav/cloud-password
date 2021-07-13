@@ -1,33 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
+import {ProfileService} from "./profile/services/profile.service";
+import {UserInterface} from "../auth/interfaces/user.interface";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit, OnDestroy {
-  links = [
-    { url: '/expenses', name: 'Expenses' },
-    { url: '/wallets', name: 'Wallets' },
-    { url: '/categories', name: 'Categories' },
-    { url: '/overview', name: 'Overview' },
-    { url: '/analytics', name: 'Analytics' },
-    { url: '/history', name: 'History' },
-    { url: '/order', name: 'Add order' }
-  ];
-  // profile$: Observable<User>;
-  isOpenedSidebar = true;
-  // innerWidth;
-
-  private subscriptions: Subscription[] = [];
-
+export class DashboardComponent implements OnInit{
   constructor(
     // private auth: AuthService,
     // private router: Router,
-    // private profileService: ProfileService,
     // private walletsService: WalletsService,
     // private categoriesService: CategoriesService,
     // private expensesService: ExpensesService
@@ -35,17 +21,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.innerWidth = window.innerWidth;
-
-    // if (this.innerWidth < 1024) {
-    //   this.isOpenedSidebar = false;
-    // }
-
     // this.subscribeOnCategories();
     // this.subscribeOnWallets();
     // this.subscribeOnExpenses();
 
-    // this.getProfile();
     // this.getCategories();
     // this.getWallets();
     // this.getExpenses();
@@ -75,10 +54,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //   this.subscriptions.push(onWalletsUpdatedSub);
   // }
 
-  // getProfile(): void {
-  //   this.profile$ = this.profileService.getProfile();
-  // }
-
   // getCategories(): void {
   //   const fetchCategoriesSub = this.categoriesService.fetch()
   //     .subscribe((categories: Category[]) => this.categoriesService.throwCategories(categories));
@@ -99,19 +74,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   //   this.subscriptions.push(fetchExpensesSub);
   // }
-
-  onToggleSidebar(event: boolean): void {
-    this.isOpenedSidebar = event;
-  }
-
-  logout(event: Event): void {
-    //   event.preventDefault();
-
-    //   this.auth.logout();
-    //   this.router.navigate(['/login']);
-  }
-
-  ngOnDestroy(): void {
-    // unsubscribe(this.subscriptions);
-  }
 }

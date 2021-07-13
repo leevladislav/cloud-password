@@ -3,46 +3,42 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
-import {User} from '../interfaces/user.interface';
+import {UserInterface} from '../interfaces/user.interface';
+import {UserRegisterInterface} from '../interfaces/user-register.interface';
+import {UserLoginInterface} from '../interfaces/user-login.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private token: string | null = null;
-
   constructor(private http: HttpClient) {
   }
 
-  register(user: User): Observable<User> {
-    return this.http.post<User>('/api/auth/register', user);
+  register(user: UserRegisterInterface): Observable<UserInterface> {
+    return this.http.post<UserInterface>('/api/auth/register', user);
   }
 
-  login(user: User): Observable<{token: string}> {
+  login(user: UserLoginInterface): Observable<{token: string}> {
     return this.http.post<{token: string}>('/api/auth/login', user)
       .pipe(
-        tap(({token}) => {
-            localStorage.setItem('auth-token', token);
-            this.setToken(token);
-          }
-        )
+        tap(({token}) => this.setToken(token))
       );
   }
 
   setToken(token: string) {
-    this.token = token;
+    // TODO: crypt token and key
+    localStorage.setItem('auth-token', token);
   }
 
   getToken(): string | null {
-    return this.token;
+    return localStorage.getItem('auth-token');
   }
 
   isAuthenticated(): boolean {
-    return !!this.token;
+    return !!localStorage.getItem('auth-token');
   }
 
-  logout() {
-    this.token = null;
+  logout(): void {
     localStorage.clear();
   }
 }

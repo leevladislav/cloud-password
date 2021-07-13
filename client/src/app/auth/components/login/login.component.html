@@ -1,7 +1,7 @@
-<div class="bg-gray-50 rounded-md p-4 w-screen max-w-sm">
+<div class="bg-secondary rounded-lg p-4 w-screen max-w-sm">
   <p class="text-lg text-center">Log in</p>
 
-  <form [formGroup]="form" (ngSubmit)="login()" class="flex flex-col items-center">
+  <form [formGroup]="form" (ngSubmit)="onLogin()" class="flex flex-col items-center">
     <mat-form-field class="w-full mb-2">
       <input matInput placeholder="Email:" formControlName="email" required />
       <mat-error>
@@ -14,17 +14,17 @@
         matInput
         placeholder="Password:"
         formControlName="password"
-        [type]="hide ? 'password' : 'text'"
+        [type]="hidePassword ? 'password' : 'text'"
         required
       />
       <button
         mat-icon-button
         matSuffix
-        (click)="hide = !hide"
+        (click)="hidePassword = !hidePassword"
         type="button"
         class="toggle-password"
       >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
       <mat-error>
         <app-validator-message
@@ -48,4 +48,6 @@
   </form>
 </div>
 
-vladislavlee.xx@gmail.com ln0932389069
+vladislavlee.xx@gmail.com
+<br>
+asdASD123!

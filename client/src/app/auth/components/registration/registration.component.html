@@ -1,7 +1,14 @@
-<div class="bg-gray-50 rounded-md p-4 w-screen max-w-sm">
+<div class="bg-secondary rounded-lg p-4 w-screen max-w-sm">
   <p class="text-lg text-center">Registration</p>
 
-  <form [formGroup]="form" (ngSubmit)="registration()" class="flex flex-col items-center">
+  <form [formGroup]="form" (ngSubmit)="onRegister()" class="flex flex-col items-center">
+    <mat-form-field class="w-full mb-2">
+      <input matInput placeholder="Username:" formControlName="name" required />
+      <mat-error>
+        <app-validator-message [key]="'name'" [field]="form.get('name')"></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field class="w-full mb-2">
       <input matInput placeholder="Email:" formControlName="email" required />
       <mat-error>

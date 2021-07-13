@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 
-import {ModalInfoComponent} from 'src/app/shared-modules/modals/modal-info/modal-info.component';
+import {ModalInfoComponent} from '../../shared-modules/modals/modal-info/modal-info.component';
 
 
 @Injectable({

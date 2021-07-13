@@ -1,7 +1,11 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+
+import {UserInterface} from '../../auth/interfaces/user.interface';
+import {ProfileService} from '../../dashboard/profile/services/profile.service';
+import {AuthService} from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,28 +13,34 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Output() onToggleSidebar = new EventEmitter<boolean>();
-  @Input() isOpenedSidebar!: boolean;
-  // mobileQuery: MediaQueryList;
-  // mobileQueryListener: () => void;
-  // balance = 0;
-  // expenses = 0;
-  // wallets: Wallet[];
+  links = [
+    {url: '/all-passwords', name: 'All Passwords'},
+
+    {url: '/wallets', name: 'Wallets'},
+    {url: '/categories', name: 'Categories'},
+    {url: '/overview', name: 'Overview'},
+    {url: '/analytics', name: 'Analytics'},
+    {url: '/history', name: 'History'},
+    {url: '/order', name: 'Add order'}
+  ];
+
+  profile$: Observable<UserInterface> = this.profileService.getProfile();
 
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private media: MediaMatcher,
+    private router: Router,
+    private authService: AuthService,
+    private profileService: ProfileService,
+    private dialog: MatDialog,
     // private walletsService: WalletsService,
     // private expensesService: ExpensesService,
-    private dialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
     // this.getWallets();
     // this.getExpenses();
-    // this.mobileWidthListener();
   }
 
   // getWallets(): void {
@@ -58,35 +68,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
   //   this.expenses = expenses.reduce((total, item) => total += item.expense, 0);
   // }
 
-  // mobileWidthListener(): void {
-  //   this.mobileQuery = this.media.matchMedia('(max-width: 1024px)');
-  //   this.mobileQueryListener = () => {
-  //     if (this.mobileQuery.matches && this.isOpenedSidebar) {
-  //       this.toggleSidebar(this.isOpenedSidebar = !this.isOpenedSidebar);
-  //     }
-
-  //     if (!this.mobileQuery.matches && !this.isOpenedSidebar) {
-  //       this.toggleSidebar(this.isOpenedSidebar = !this.isOpenedSidebar);
-  //     }
-  //   };
-
-  //   this.mobileQuery.addEventListener('change', this.mobileQueryListener);
-  // }
-
-  toggleSidebar(event: boolean): void {
-    this.onToggleSidebar.emit(event);
+  toggleSidebar(): void {
   }
 
   addIncome(): void {
-  //   this.dialog.open(ModalAddIncomeComponent, {
-  //     data: this.wallets,
-  //     panelClass: ['primary-modal', 'modal-md'],
-  //     autoFocus: false
-  //   });
+    //   this.dialog.open(ModalAddIncomeComponent, {
+    //     data: this.wallets,
+    //     panelClass: ['primary-modal', 'modal-md'],
+    //     autoFocus: false
+    //   });
   }
 
   ngOnDestroy(): void {
     // this.mobileQuery.removeEventListener('change', this.mobileQueryListener);
     // unsubscribe(this.subscriptions);
+  }
+
+  logout(event: Event): void {
+    event.preventDefault();
+
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "cloud-password app with angular and express",
   "main": "index.js",
-  "engines": {
-    "node": "15.14.0",
-    "npm": "7.17.0"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",

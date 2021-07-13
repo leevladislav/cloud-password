@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import { DashboardComponent } from './dashboard.component';
-import { DashboardGuard } from './dashboard.guard';
+import {DashboardComponent} from './dashboard.component';
+import {DashboardGuard} from './dashboard.guard';
 
 const routes: Routes = [
   {
@@ -13,16 +13,12 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home'
+        redirectTo: 'all-passwords'
       },
-      // {
-      //   path: 'expenses',
-      //   loadChildren: () => import('./expenses-page/expenses-page.module').then(m => m.ExpensesPageModule)
-      // },
-      // {
-      //   path: 'wallets',
-      //   loadChildren: () => import('./wallets-page/wallets-page.module').then(m => m.WalletsPageModule)
-      // },
+      {
+        path: 'all-passwords',
+        loadChildren: () => import('./all-passwords/all-passwords.module').then(m => m.AllPasswordsModule)
+      },
     ]
   }
 ];
