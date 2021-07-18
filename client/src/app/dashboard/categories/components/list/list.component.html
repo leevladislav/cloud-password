@@ -1,5 +1,26 @@
-<app-alert-action [text]="'Create category text Create category text Create category text'">
-  <button mat-raised-button color="primary" routerLink="/categories/create">
-    Create New Category
-  </button>
-</app-alert-action>
+<div class="my-5">
+  <p class="text-center text-2xl">Категории</p>
+
+  <app-alert-action [text]="'Создайте новую категорию для удобной группировки паролей'">
+    <button mat-raised-button color="primary" routerLink="/categories/create">
+      Создать категорию
+    </button>
+  </app-alert-action>
+
+  <div
+    *ngIf="categories$ | async as categories; else loader"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+  >
+    <a
+      [routerLink]="[category._id, 'edit']"
+      *ngFor="let category of categories"
+      class="rounded-md p-4 border border-gray-200 hover:bg-secondary hover:border-transparent"
+    >
+      <span class="">{{category.name}}</span>
+    </a>
+  </div>
+
+  <ng-template #loader>
+    <mat-spinner class="my-5 mx-auto"></mat-spinner>
+  </ng-template>
+</div>

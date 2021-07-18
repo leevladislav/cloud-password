@@ -1,15 +1,13 @@
-<app-modal-header [title]="data.title"></app-modal-header>
+<app-modal-header [title]="data.title || 'Внимание!'"></app-modal-header>
 
-<div class="dialog-content">
-  <p class="text-center">{{data.text}}</p>
+<p class="text-center pt-4">{{data.text}}</p>
 
-  <mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="false">
-      Cancel
-    </button>
+<mat-dialog-actions class="justify-center">
+  <button class="w-2/5" mat-raised-button [mat-dialog-close]="false">
+    Отменить
+  </button>
 
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">
-      Yes
-    </button>
-  </mat-dialog-actions>
-</div>
+  <button class="w-2/5" mat-raised-button color="primary" [mat-dialog-close]="true">
+    Да
+  </button>
+</mat-dialog-actions>

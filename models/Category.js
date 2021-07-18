@@ -6,11 +6,6 @@ const categorySchema = new Schema({
         type: String,
         required: true
     },
-    iconName: {
-        type: String,
-        required: true,
-        default: 'icon-pictures'
-    },
     user: {
         ref: 'users',
         type: Schema.Types.ObjectId

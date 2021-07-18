@@ -6,23 +6,23 @@ import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatRippleModule} from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {CategoriesComponent} from './categories.component';
 import {CategoriesRoutingModule} from './categories-routing.module';
 import {ListComponent} from './components/list/list.component';
 import {AlertActionModule} from '../../shared-modules/alert-action/alert-action.module';
-import { CreateComponent } from './components/create/create.component';
-import { CategoryComponent } from './components/category/category.component';
+import {CategoryComponent} from './components/category/category.component';
 import {ValidatorMessageModule} from '../../shared-modules/validator-message/validator-message.module';
 import {ModalConfirmModule} from '../../shared-modules/modals/modal-confirm/modal-confirm.module';
+import {BackBtnModule} from '../../shared-modules/back-btn/back-btn.module';
 
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     ListComponent,
-    CreateComponent,
-    CategoryComponent
+    CategoryComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +35,9 @@ import {ModalConfirmModule} from '../../shared-modules/modals/modal-confirm/moda
     MatInputModule,
     ReactiveFormsModule,
     MatRippleModule,
-    ModalConfirmModule
+    ModalConfirmModule,
+    MatProgressSpinnerModule,
+    BackBtnModule
   ]
 })
 export class CategoriesModule {

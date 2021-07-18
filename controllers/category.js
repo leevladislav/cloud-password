@@ -15,7 +15,7 @@ module.exports.getById = async function(req, res) {
         const category = await Category.findById(req.params.id);
         res.status(200).json(category);
     } catch (e) {
-        errorHandler(res, e);
+        errorHandler(res, 'Категория не найдена');
     }
 };
 
@@ -23,7 +23,7 @@ module.exports.remove = async function(req, res) {
     try {
         await Category.remove({_id: req.params.id});
         res.status(200).json({
-            message: 'Category successfully removed'
+            message: 'Категория успешно удалена!'
         })
     } catch (e) {
         errorHandler(res, e);
@@ -34,7 +34,6 @@ module.exports.create = async function(req, res) {
     const category = new Category({
         name: req.body.name,
         user: req.user.id,
-        iconName: req.body.iconName
     });
 
     try {
@@ -48,7 +47,6 @@ module.exports.create = async function(req, res) {
 module.exports.update = async function(req, res) {
     const updated = {
         name: req.body.name,
-        iconName: req.body.iconName,
     };
 
     try {
