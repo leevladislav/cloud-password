@@ -1,23 +1,45 @@
-<div class="flex align-center">
-    <div class="logo">logo</div>
+<div class="bg-primary">
+  <div class="container">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center">
+        <a class="logo flex-shrink-0" [routerLink]="['all-passwords']">
+          logo
+        </a>
 
-    <div class="user">
-      <p class="name" *ngIf="profile$ | async as profile">
-        {{profile.name}}
-      </p>
-    </div>
+        <div class="hidden md:flex md:ml-10 items-center space-x-4">
+          <a
+            class="hover:bg-secondary p-3 rounded-md"
+            *ngFor="let link of links"
+            [routerLink]="[link.url]"
+            routerlinkActive="active"
+          >
+            {{link.name}}
+          </a>
+        </div>
+      </div>
 
-    <div *ngFor="let link of links" routerlinkActive="active">
-      <a [routerLink]="[link.url]">{{link.name}}</a>
-    </div>
-
-    <div class="menu">
-      <button mat-stroked-button (click)="toggleSidebar()">
-        <mat-icon>menu</mat-icon>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <span class="name" *ngIf="profile$ | async as profile">
+          {{profile.name}}
+        </span>
       </button>
-    </div>
 
-    <div class="logout">
-      <button mat-raised-button color="accent" (click)="logout($event)">Log out</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Your Profile</button>
+
+        <div class="md:hidden block">
+          <button
+            mat-menu-item
+            *ngFor="let link of links"
+            [routerLink]="[link.url]"
+            routerlinkActive="active"
+          >
+            {{link.name}}
+          </button>
+        </div>
+
+        <button mat-menu-item (click)="logout($event)">Sign out</button>
+      </mat-menu>
     </div>
+  </div>
 </div>

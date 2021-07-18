@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 
@@ -15,13 +14,7 @@ import {AuthService} from '../../../../../auth/services/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   links: {url: string, name: string}[] = [
     {url: '/all-passwords', name: 'All Passwords'},
-
-    {url: '/wallets', name: 'Wallets'},
     {url: '/categories', name: 'Categories'},
-    {url: '/overview', name: 'Overview'},
-    {url: '/analytics', name: 'Analytics'},
-    {url: '/history', name: 'History'},
-    {url: '/order', name: 'Add order'}
   ];
 
   profile$: Observable<UserInterface> = this.profileService.getProfile();
@@ -32,7 +25,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private profileService: ProfileService,
-    private dialog: MatDialog,
     // private walletsService: WalletsService,
     // private expensesService: ExpensesService,
   ) {

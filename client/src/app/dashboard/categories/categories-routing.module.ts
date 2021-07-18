@@ -1,18 +1,27 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AllPasswordsComponent} from './all-passwords.component';
+import {CategoriesComponent} from './categories.component';
 import {ListComponent} from './components/list/list.component';
+import {CategoryComponent} from './components/category/category.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AllPasswordsComponent,
+    component: CategoriesComponent,
     children: [
       {
         path: '',
         component: ListComponent
-      }
+      },
+      {
+        path: 'create',
+        component: CategoryComponent
+      },
+      {
+        path: ':id/edit',
+        component: CategoryComponent
+      },
     ]
   }
 ];
@@ -22,5 +31,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AllPasswordsRoutingModule {
+export class CategoriesRoutingModule {
 }

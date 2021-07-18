@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnDestroy {
   private register(data: UserRegisterInterface): void {
     const registerSub = this.auth.register(data)
       .subscribe(
-        () => this.router.navigate(['/home']),
+        () => this.router.navigate(['/login']),
         (error) => {
           this.openModalService.onError(error.error.message);
           this.form.enable();

@@ -48,7 +48,7 @@ export class LoginComponent implements OnDestroy {
   private login(data: UserLoginInterface): void {
     const loginSub = this.auth.login(data)
       .subscribe(
-        () => this.router.navigate(['/home']),
+        () => this.router.navigate(['/all-passwords']),
         (error) => {
           this.modalInfoService.onError(error.error.message);
           this.form.enable();
