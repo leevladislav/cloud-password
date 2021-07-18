@@ -13,10 +13,10 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'all-passwords'
+        redirectTo: 'home'
       },
       {
-        path: 'all-passwords',
+        path: 'home',
         loadChildren: () => import('../../../dashboard/all-passwords/all-passwords.module').then(m => m.AllPasswordsModule)
       },
       {

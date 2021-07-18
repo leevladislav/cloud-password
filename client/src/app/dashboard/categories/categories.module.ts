@@ -13,9 +13,12 @@ import {CategoriesRoutingModule} from './categories-routing.module';
 import {ListComponent} from './components/list/list.component';
 import {AlertActionModule} from '../../shared-modules/alert-action/alert-action.module';
 import {CategoryComponent} from './components/category/category.component';
-import {ValidatorMessageModule} from '../../shared-modules/validator-message/validator-message.module';
+import {
+  ValidatorMessageModule
+} from '../../shared-modules/validator-message/validator-message.module';
 import {ModalConfirmModule} from '../../shared-modules/modals/modal-confirm/modal-confirm.module';
 import {BackBtnModule} from '../../shared-modules/back-btn/back-btn.module';
+import {CategoriesService} from './services/categories.service';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import {BackBtnModule} from '../../shared-modules/back-btn/back-btn.module';
     ModalConfirmModule,
     MatProgressSpinnerModule,
     BackBtnModule
+  ],
+  providers: [
+    CategoriesService
   ]
 })
 export class CategoriesModule {

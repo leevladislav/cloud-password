@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {CategoryInterface} from '../interfaces/category.interface';
 import {
@@ -8,37 +8,29 @@ import {
   CategoryUpdateParamsInterface
 } from '../interfaces/category-params.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CategoriesService {
-  categoriesUpdated$ = new Subject<boolean>();
-  categories$ = new BehaviorSubject<CategoryInterface[]>([]);
-
+  private apiUrl = '/api/category';
   constructor(private http: HttpClient) {
   }
 
   fetch(): Observable<CategoryInterface[]> {
-    return this.http.get<CategoryInterface[]>('/api/category');
+    return this.http.get<CategoryInterface[]>(this.apiUrl);
   }
 
   getById(id: string): Observable<CategoryInterface> {
-    return this.http.get<CategoryInterface>(`/api/category/${id}`);
+    return this.http.get<CategoryInterface>(`${this.apiUrl}/${id}`);
   }
 
   create(data: CategoryCreateParamsInterface): Observable<CategoryInterface> {
-    return this.http.post<CategoryInterface>('/api/category', data);
+    return this.http.post<CategoryInterface>(this.apiUrl, data);
   }
 
   update(data: CategoryUpdateParamsInterface): Observable<CategoryInterface> {
-    return this.http.patch<CategoryInterface>(`/api/category/${data.id}`, data);
+    return this.http.patch<CategoryInterface>(`${this.apiUrl}/${data.id}`, data);
   }
 
   delete(id: string): Observable<{ message: string }> {
-    return this.http.delete<{ message: string }>(`/api/category/${id}`);
-  }
-
-  throwCategories(categories: CategoryInterface[]): void {
-    this.categories$.next(categories);
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`);
   }
 }

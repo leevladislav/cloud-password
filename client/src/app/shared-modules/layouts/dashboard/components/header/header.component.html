@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex items-center justify-between py-4">
       <div class="flex items-center">
-        <a class="logo flex-shrink-0" [routerLink]="['all-passwords']">
+        <a class="logo flex-shrink-0" [routerLink]="['home']">
           logo
         </a>
 
@@ -25,7 +25,7 @@
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Your Profile</button>
+        <button mat-menu-item>Профиль</button>
 
         <div class="md:hidden block">
           <button
@@ -38,7 +38,7 @@
           </button>
         </div>
 
-        <button mat-menu-item (click)="logout($event)">Sign out</button>
+        <button mat-menu-item (click)="logout($event)">Выйти</button>
       </mat-menu>
     </div>
   </div>

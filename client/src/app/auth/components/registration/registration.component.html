@@ -1,9 +1,9 @@
-<div class="bg-secondary rounded-lg p-4 w-screen max-w-sm">
-  <p class="text-lg text-center">Registration</p>
+<div class="bg-secondary rounded-lg py-5 px-4 w-screen max-w-sm">
+  <p class="text-lg text-center">Регистрация</p>
 
   <form [formGroup]="form" (ngSubmit)="onRegister()" class="flex flex-col items-center">
     <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Username:" formControlName="name" required />
+      <input matInput placeholder="Имя:" formControlName="name" required />
       <mat-error>
         <app-validator-message [key]="'name'" [field]="form.get('name')"></app-validator-message>
       </mat-error>
@@ -20,7 +20,7 @@
       <mat-form-field class="w-full mb-2">
         <input
           matInput
-          placeholder="Password:"
+          placeholder="Пароль:"
           formControlName="password"
           [type]="hideNewPassword ? 'password' : 'text'"
           required
@@ -45,7 +45,7 @@
       <mat-form-field class="w-full mb-2">
         <input
           matInput
-          placeholder="Password:"
+          placeholder="Повторить пароль:"
           formControlName="repeatPassword"
           [type]="hideRepeatNewPassword ? 'password' : 'text'"
           required
@@ -75,9 +75,12 @@
       type="submit"
       class="w-full"
     >
-      Submit
+      Зарегистрироваться
     </button>
 
-    <a class="mt-4" routerLink="/auth/login">Log in</a>
+    <div class="mt-4">
+      Уже есть аккаунт?
+      <a class="text-primary" routerLink="/auth/login">Авторизоваться</a>
+    </div>
   </form>
 </div>

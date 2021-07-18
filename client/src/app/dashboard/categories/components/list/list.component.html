@@ -1,7 +1,7 @@
 <div class="my-5">
   <p class="text-center text-2xl">Категории</p>
 
-  <app-alert-action [text]="'Создайте новую категорию для удобной группировки паролей'">
+  <app-alert-action [text]="'Вы можете создавать новые категории для удобной группировки паролей'">
     <button mat-raised-button color="primary" routerLink="/categories/create">
       Создать категорию
     </button>
@@ -14,7 +14,7 @@
     <a
       [routerLink]="[category._id, 'edit']"
       *ngFor="let category of categories"
-      class="rounded-md p-4 border border-gray-200 hover:bg-secondary hover:border-transparent"
+      class="rounded-md p-4 border border-primary hover:bg-secondary hover:border-transparent"
     >
       <span class="">{{category.name}}</span>
     </a>

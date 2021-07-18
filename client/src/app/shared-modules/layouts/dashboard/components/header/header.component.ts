@@ -13,8 +13,8 @@ import {AuthService} from '../../../../../auth/services/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   links: {url: string, name: string}[] = [
-    {url: '/all-passwords', name: 'All Passwords'},
-    {url: '/categories', name: 'Categories'},
+    {url: '/home', name: 'Главная'},
+    {url: '/categories', name: 'Категории'},
   ];
 
   profile$: Observable<UserInterface> = this.profileService.getProfile();

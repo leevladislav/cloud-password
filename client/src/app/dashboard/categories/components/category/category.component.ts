@@ -108,7 +108,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
         (category: CategoryInterface) => {
           this.category = category;
           this.form.enable();
-          this.categoriesService.categoriesUpdated$.next(true);
           this.modalInfoService.onSuccess(
             'Категория успешно создана!',
             '',
@@ -134,7 +133,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
         (category: CategoryInterface) => {
           this.category = category;
           this.form.enable();
-          this.categoriesService.categoriesUpdated$.next(true);
 
           this.modalInfoService.onSuccess(
             'Категория успешно обновлена!',
@@ -152,10 +150,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   private delete(categoryId: string): void {
     const deleteCategorySub = this.categoriesService.delete(categoryId).subscribe(
-      response => {
-        this.categoriesService.categoriesUpdated$.next(true);
-        this.modalInfoService.onSuccess(response.message, '', 'categories');
-      },
+      response => this.modalInfoService.onSuccess(response.message, '', 'categories'),
       error => this.modalInfoService.onError(error.error.message)
     );
     this.subscriptions.push(deleteCategorySub);

@@ -15,8 +15,15 @@ module.exports = {
       },
     },
     backgroundColor: () => ({
-      'primary': '#f5f8fc',
-      'secondary': '#e5f5f9',
+      primary: '#f5f8fc',
+      secondary: '#e5f5f9',
+    }),
+    colors: {
+      primary: '#599de4',
+    },
+    borderColor: () => ({
+      primary: '#e2e2e2',
+      transparent: 'transparent',
     })
   },
   variants: {

@@ -9,8 +9,12 @@
 
   <p class="text-center text-2xl">{{isNew ? 'Create' : 'Edit'}} category</p>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col">
-    <mat-form-field>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col max-w-sm mx-auto"
+  >
+    <mat-form-field class="w-full mb-2">
       <input matInput placeholder="Название категории:" formControlName="name" required>
       <mat-error>
         <app-validator-message [field]="form.get('name')"></app-validator-message>
