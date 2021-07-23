@@ -1,40 +1,28 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Params} from '@angular/router';
-import {of, Subscription} from 'rxjs';
-import {filter, switchMap} from 'rxjs/operators';
+import {Component, OnDestroy} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute} from '@angular/router';
+import {filter} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
 
-import {CategoryInterface} from '../../interfaces/category.interface';
 import {CategoriesService} from '../../services/categories.service';
+import {CategoryInterface} from '../../interfaces/category.interface';
 import {ModalInfoService} from '../../../../core/services/modal-info.service';
 import {unsubscribe} from '../../../../core/utils/unsubscriber';
-import {
-  CategoryCreateParamsInterface,
-  CategoryUpdateParamsInterface
-} from '../../interfaces/category-params.interface';
-import {
-  ModalConfirmComponent
-} from '../../../../shared-modules/modals/modal-confirm/modal-confirm.component';
+import {ModalConfirmComponent} from '../../../../shared-modules/modals/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit, OnDestroy {
-  form: FormGroup = this.fb.group({
-    name: [null, [Validators.required]]
-  });
+export class CategoryComponent implements OnDestroy {
+  categoryId = this.route.snapshot.params.id;
 
-  isNew = true;
-
-  category!: CategoryInterface;
+  category$: Observable<CategoryInterface> = this.categoriesService.getById(this.categoryId);
 
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private fb: FormBuilder,
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
     private modalInfoService: ModalInfoService,
@@ -42,117 +30,29 @@ export class CategoryComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit(): void {
-    this.getCategory();
-  }
-
   ngOnDestroy(): void {
     unsubscribe(this.subscriptions);
   }
 
-  onSubmit(): void {
-    if (this.form.invalid) {
-      return this.form.markAllAsTouched();
-    }
-
-    this.form.disable();
-    this.isNew ? this.create() : this.update();
-  }
-
   onDelete(): void {
     const dialogRef = this.dialog.open(ModalConfirmComponent, {
-      data: {text: `Вы уверены, что хотите удалить категорию ${this.category.name}?`},
+      data: {text: 'Вы уверены, что хотите удалить категорию?'},
       panelClass: ['primary-modal'],
       autoFocus: false
     });
 
     const dialogRefSub = dialogRef.afterClosed()
       .pipe(filter((result) => result))
-      .subscribe(() => this.delete(this.category._id as string));
+      .subscribe(() => this.delete(this.categoryId as string));
     this.subscriptions.push(dialogRefSub);
   }
 
-  private getCategory(): void {
-    const getCategorySub = this.route.params.pipe(
-      switchMap(
-        (params: Params) => {
-          if (params.id) {
-            this.isNew = false;
-            return this.categoriesService.getById(params.id);
-          }
-
-          return of(null);
-        }
-      )
-    ).subscribe(
-      (category: CategoryInterface| null) => {
-        if (category) {
-          this.category = category;
-          this.form.patchValue(category);
-
-          this.form.enable();
-        }
-      },
-      (error) => this.modalInfoService.onError(error.error.message, '', 'categories')
-    );
-    this.subscriptions.push(getCategorySub);
-  }
-
-  private create(): void {
-    const data: CategoryCreateParamsInterface = {
-      name: this.form.value.name
-    };
-
-    const createCategorySub = this.categoriesService.create(data)
-      .subscribe(
-        (category: CategoryInterface) => {
-          this.category = category;
-          this.form.enable();
-          this.modalInfoService.onSuccess(
-            'Категория успешно создана!',
-            '',
-            'categories'
-          );
-        },
-        (error) => {
-          this.form.enable();
-          this.modalInfoService.onError(error.error.message);
-        }
-      );
-    this.subscriptions.push(createCategorySub);
-  }
-
-  private update(): void {
-    const data: CategoryUpdateParamsInterface = {
-      id: this.category._id as string,
-      name: this.form.value.name,
-    };
-
-    const updateCategorySub = this.categoriesService.update(data)
-      .subscribe(
-        (category: CategoryInterface) => {
-          this.category = category;
-          this.form.enable();
-
-          this.modalInfoService.onSuccess(
-            'Категория успешно обновлена!',
-            '',
-            'categories'
-          );
-        },
-        (error) => {
-          this.form.enable();
-          this.modalInfoService.onError(error.error.message);
-        }
-      );
-    this.subscriptions.push(updateCategorySub);
-  }
-
   private delete(categoryId: string): void {
-    const deleteCategorySub = this.categoriesService.delete(categoryId).subscribe(
-      response => this.modalInfoService.onSuccess(response.message, '', 'categories'),
-      error => this.modalInfoService.onError(error.error.message)
-    );
+    const deleteCategorySub = this.categoriesService.delete(categoryId)
+      .subscribe(
+        response => this.modalInfoService.onSuccess(response.message, '', 'categories'),
+        error => this.modalInfoService.onError(error.error.message)
+      );
     this.subscriptions.push(deleteCategorySub);
   }
 }

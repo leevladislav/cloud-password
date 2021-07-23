@@ -11,13 +11,17 @@
     *ngIf="categories$ | async as categories; else loader"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
   >
-    <a
-      [routerLink]="[category._id, 'edit']"
+    <div
+      [routerLink]="[category._id]"
       *ngFor="let category of categories"
-      class="rounded-md p-4 border border-primary hover:bg-secondary hover:border-transparent"
+      class="flex flex-col text-center rounded-md p-2 bg-secondary cursor-pointer"
     >
-      <span class="">{{category.name}}</span>
-    </a>
+      <span class="p-3">{{category.name}}</span>
+
+      <button mat-raised-button color="primary" (click)="edit($event, category)">
+        Редактировать
+      </button>
+    </div>
   </div>
 
   <ng-template #loader>

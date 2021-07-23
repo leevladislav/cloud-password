@@ -1,33 +1,17 @@
 <div class="my-5">
-  <div class="flex items-center justify-between">
-    <app-back-btn></app-back-btn>
+  <ng-container *ngIf="category$ | async as category; else loader">
+    <div class="flex items-center justify-between">
+      <app-back-btn></app-back-btn>
 
-    <button mat-button-base mat-stroked-button *ngIf="!isNew" (click)="onDelete()">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
+      <button mat-stroked-button (click)="onDelete()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
 
-  <p class="text-center text-2xl">{{isNew ? 'Create' : 'Edit'}} category</p>
+    <p class="text-center text-2xl">{{category.name}}</p>
+  </ng-container>
 
-  <form
-    [formGroup]="form"
-    (ngSubmit)="onSubmit()"
-    class="flex flex-col max-w-sm mx-auto"
-  >
-    <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Название категории:" formControlName="name" required>
-      <mat-error>
-        <app-validator-message [field]="form.get('name')"></app-validator-message>
-      </mat-error>
-    </mat-form-field>
-
-    <button
-      [disabled]="form.invalid || form.disabled"
-      type="submit"
-      mat-raised-button
-      color="primary"
-    >
-      {{isNew ? 'Создать' : 'Обновить'}}
-    </button>
-  </form>
+  <ng-template #loader>
+    <mat-spinner class="my-5 mx-auto"></mat-spinner>
+  </ng-template>
 </div>
