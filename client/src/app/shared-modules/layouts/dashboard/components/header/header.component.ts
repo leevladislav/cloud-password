@@ -14,6 +14,7 @@ import {AuthService} from '../../../../../auth/services/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   links: {url: string, name: string}[] = [
     {url: '/home', name: 'Главная'},
+    {url: '/safes', name: 'Сейфы'},
     {url: '/categories', name: 'Категории'},
   ];
 

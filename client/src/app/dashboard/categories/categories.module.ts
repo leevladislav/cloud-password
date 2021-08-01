@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {CategoriesComponent} from './categories.component';
-import {CategoriesRoutingModule} from './categories-routing.module';
+import {CategoriesRoutingModule} from './categories.routing.module';
 import {ListComponent} from './components/list/list.component';
 import {AlertActionModule} from '../../shared-modules/alert-action/alert-action.module';
 import {ManageCategoryComponent} from './components/manage-category/manage-category.component';

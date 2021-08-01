@@ -11,6 +11,7 @@ import {
 @Injectable()
 export class CategoriesService {
   private apiUrl = '/api/category';
+
   constructor(private http: HttpClient) {
   }
 

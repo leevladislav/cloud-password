@@ -16,8 +16,8 @@ const routes: Routes = [
         redirectTo: 'home'
       },
       {
-        path: 'home',
-        loadChildren: () => import('../../../dashboard/all-passwords/all-passwords.module').then(m => m.AllPasswordsModule)
+        path: 'safes',
+        loadChildren: () => import('../../../dashboard/safes/safes.module').then(m => m.SafesModule)
       },
       {
         path: 'categories',

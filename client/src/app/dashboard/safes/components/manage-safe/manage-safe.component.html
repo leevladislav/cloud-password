@@ -1,0 +1,33 @@
+<div class="my-5">
+  <div class="flex items-center justify-between">
+    <app-back-btn></app-back-btn>
+
+    <button mat-stroked-button *ngIf="!isNew" (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <p class="text-center text-2xl">{{isNew ? 'Создание' : 'Редактирование'}} сейфа</p>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col max-w-sm mx-auto"
+  >
+    <mat-form-field class="w-full mb-2">
+      <input matInput placeholder="Название сейфа:" formControlName="name" required>
+      <mat-error>
+        <app-validator-message [field]="form.get('name')"></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      [disabled]="form.invalid || form.disabled"
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      {{isNew ? 'Создать' : 'Сохранить'}}
+    </button>
+  </form>
+</div>
