@@ -23,11 +23,11 @@ const safeSchema = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     additional: {
         type: [additionalSchema],

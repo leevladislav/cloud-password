@@ -27,8 +27,8 @@ import {CategoriesService} from '../../../categories/services/categories.service
 export class ManageSafeComponent implements OnInit, OnDestroy {
   form: FormGroup = this.fb.group({
     name: [null, [Validators.required, Validators.maxLength(100)]],
-    email: [null, [Validators.required, Validators.maxLength(100)]],
-    password: [null, [Validators.required, Validators.maxLength(100)]],
+    email: [null, [Validators.maxLength(100)]],
+    password: [null, [Validators.maxLength(100)]],
     category: [null, [Validators.required]],
     additional: this.fb.array([this.createFields(true)])
   });
@@ -83,7 +83,7 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
     this.subscriptions.push(dialogRefSub);
   }
 
-  addFields(event: Event): void {
+  addFields(event?: Event): void {
     event?.preventDefault();
 
     this.additional.push(this.createFields());
@@ -122,6 +122,13 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
       (safe: SafeInterface | null) => {
         if (safe) {
           this.safe = safe;
+
+          if (safe.additional?.length) {
+            for (let i = 0; i < safe.additional.length - 1; i++) {
+              this.addFields();
+            }
+          }
+
           this.form.patchValue(safe);
 
           this.form.enable();

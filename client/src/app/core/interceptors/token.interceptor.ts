@@ -39,11 +39,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 401) {
-      this.router.navigate(['/login'], {
-        queryParams: {
-          sessionFailed: true
-        }
-      });
+      this.authService.logout();
+      this.router.navigate(['/login']);
     }
 
     return throwError(error);

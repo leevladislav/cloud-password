@@ -12,7 +12,7 @@
   <form
     [formGroup]="form"
     (ngSubmit)="onSubmit()"
-    class="flex flex-col max-w-sm mx-auto"
+    class="flex flex-col max-w-lg mx-auto"
   >
     <mat-form-field class="w-full mb-2">
       <input matInput placeholder="Название сейфа:" formControlName="name" required>
@@ -21,9 +21,8 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="w-full mb-2">
-      <mat-label>Категория:</mat-label>
-      <mat-select formControlName="category">
+    <mat-form-field class="w-full mb-2">
+      <mat-select placeholder="Категория:" formControlName="category" required>
         <mat-option *ngFor="let category of categories$ | async" [value]="category._id">
           {{category.name}}
         </mat-option>
@@ -31,65 +30,63 @@
     </mat-form-field>
 
     <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Email:" formControlName="email" required>
+      <input matInput placeholder="Email:" formControlName="email">
       <mat-error>
         <app-validator-message [field]="form.get('email')"></app-validator-message>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Пароль:" formControlName="password" required>
+      <input matInput placeholder="Пароль:" formControlName="password">
       <mat-error>
         <app-validator-message [field]="form.get('password')"></app-validator-message>
       </mat-error>
     </mat-form-field>
 
-    <div
+    <p *ngIf="additional.controls.length" class="d-block mt-4">Дополнительные поля:</p>
+
+    <ng-container
       formArrayName="additional"
-      *ngFor="
-          let item of additional.controls;
-          let i = index;
-          let first = first;
-          let last = last"
+      *ngFor="let item of additional.controls; let i = index; let first = first;"
     >
-      <div [formGroupName]="i">
-        <mat-form-field class="w-full mb-2">
+      <div [formGroupName]="i" class="flex">
+        <mat-form-field class="w-full mb-2 mr-2">
           <input matInput placeholder="Название:" formControlName="key" />
           <mat-error>
             <app-validator-message [field]="item.get('key')"></app-validator-message>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-full mb-2">
+        <mat-form-field class="w-full mb-2 mr-2">
           <input matInput placeholder="Значение:" formControlName="value" />
           <mat-error>
             <app-validator-message [field]="item.get('value')"></app-validator-message>
           </mat-error>
         </mat-form-field>
 
-        <div class="actions">
+        <div class="actions flex">
           <button
             mat-icon-button
-            class="btn btn-accent"
-            [disabled]="form.disabled"
+            color="primary"
+            class="btn"
+            [disabled]="form.disabled || i > 3"
             (click)="addFields($event)"
-            *ngIf="last"
           >
             <mat-icon>add</mat-icon>
           </button>
 
           <button
             mat-icon-button
-            class="btn btn-remove"
-            *ngIf="!first"
-            [disabled]="form.disabled"
+            color="warn"
+            class="btn"
+            [disabled]="form.disabled || first"
             (click)="removeFields(i)"
           >
             <mat-icon>delete</mat-icon>
           </button>
         </div>
       </div>
-    </div>
+    </ng-container>
 
     <button
       [disabled]="form.invalid || form.disabled"
