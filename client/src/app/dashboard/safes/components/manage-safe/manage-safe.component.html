@@ -21,6 +21,76 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill" class="w-full mb-2">
+      <mat-label>Категория:</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories$ | async" [value]="category._id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-2">
+      <input matInput placeholder="Email:" formControlName="email" required>
+      <mat-error>
+        <app-validator-message [field]="form.get('email')"></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-2">
+      <input matInput placeholder="Пароль:" formControlName="password" required>
+      <mat-error>
+        <app-validator-message [field]="form.get('password')"></app-validator-message>
+      </mat-error>
+    </mat-form-field>
+
+    <div
+      formArrayName="additional"
+      *ngFor="
+          let item of additional.controls;
+          let i = index;
+          let first = first;
+          let last = last"
+    >
+      <div [formGroupName]="i">
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Название:" formControlName="key" />
+          <mat-error>
+            <app-validator-message [field]="item.get('key')"></app-validator-message>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full mb-2">
+          <input matInput placeholder="Значение:" formControlName="value" />
+          <mat-error>
+            <app-validator-message [field]="item.get('value')"></app-validator-message>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="actions">
+          <button
+            mat-icon-button
+            class="btn btn-accent"
+            [disabled]="form.disabled"
+            (click)="addFields($event)"
+            *ngIf="last"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            class="btn btn-remove"
+            *ngIf="!first"
+            [disabled]="form.disabled"
+            (click)="removeFields(i)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <button
       [disabled]="form.invalid || form.disabled"
       type="submit"

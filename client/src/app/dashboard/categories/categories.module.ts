@@ -20,6 +20,7 @@ import {ModalConfirmModule} from '../../shared-modules/modals/modal-confirm/moda
 import {BackBtnModule} from '../../shared-modules/back-btn/back-btn.module';
 import {CategoriesService} from './services/categories.service';
 import {CategoryComponent} from './components/category/category.component';
+import {SafesService} from '../safes/services/safes.service';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {CategoryComponent} from './components/category/category.component';
     BackBtnModule
   ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    SafesService
   ]
 })
 export class CategoriesModule {

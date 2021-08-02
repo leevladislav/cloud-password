@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {of, Subscription} from 'rxjs';
+import {Observable, of, Subscription} from 'rxjs';
 import {filter, switchMap} from 'rxjs/operators';
 
 import {ModalInfoService} from '../../../../core/services/modal-info.service';
@@ -16,6 +16,8 @@ import {SafeInterface} from '../../interfaces/safe.interface';
 import {
   ModalConfirmComponent
 } from '../../../../shared-modules/modals/modal-confirm/modal-confirm.component';
+import {CategoryInterface} from '../../../categories/interfaces/category.interface';
+import {CategoriesService} from '../../../categories/services/categories.service';
 
 @Component({
   selector: 'app-manage-safe',
@@ -24,12 +26,20 @@ import {
 })
 export class ManageSafeComponent implements OnInit, OnDestroy {
   form: FormGroup = this.fb.group({
-    name: [null, [Validators.required]]
+    name: [null, [Validators.required, Validators.maxLength(100)]],
+    email: [null, [Validators.required, Validators.maxLength(100)]],
+    password: [null, [Validators.required, Validators.maxLength(100)]],
+    category: [null, [Validators.required]],
+    additional: this.fb.array([this.createFields(true)])
   });
+
+  additional: FormArray = this.form.get('additional') as FormArray;
 
   isNew = true;
 
   safe!: SafeInterface;
+
+  categories$: Observable<CategoryInterface[]> = this.categoriesService.fetch();
 
   private subscriptions: Subscription[] = [];
 
@@ -37,6 +47,7 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private safesService: SafesService,
+    private categoriesService: CategoriesService,
     private modalInfoService: ModalInfoService,
     private dialog: MatDialog,
   ) {
@@ -68,8 +79,31 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
 
     const dialogRefSub = dialogRef.afterClosed()
       .pipe(filter((result) => result))
-      .subscribe(() => this.delete(this.safe._id as string));
+      .subscribe(() => this.delete(this.safe._id));
     this.subscriptions.push(dialogRefSub);
+  }
+
+  addFields(event: Event): void {
+    event?.preventDefault();
+
+    this.additional.push(this.createFields());
+  }
+
+  removeFields(index: number): void {
+    this.additional.removeAt(index);
+  }
+
+  private createFields(isFirstControl = false): FormGroup {
+    const validators = [Validators.maxLength(100)];
+
+    if (!isFirstControl) {
+      validators.push(Validators.required);
+    }
+
+    return this.fb.group({
+      key: ['', validators],
+      value: ['', validators],
+    });
   }
 
   private getSafe(): void {
@@ -99,9 +133,7 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
   }
 
   private create(): void {
-    const data: SafeCreateParamsInterface = {
-      name: this.form.value.name
-    };
+    const data: SafeCreateParamsInterface = {...this.form.value};
 
     const createSafeSub = this.safesService.create(data)
       .subscribe(
@@ -124,8 +156,8 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
 
   private update(): void {
     const data: SafeUpdateParamsInterface = {
-      id: this.safe._id as string,
-      name: this.form.value.name,
+      id: this.safe._id,
+      ...this.form.value,
     };
 
     const updateSafeSub = this.safesService.update(data)

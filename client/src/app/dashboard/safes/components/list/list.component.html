@@ -1,3 +1,28 @@
-<app-alert-action [text]="'Вы можете создать новый сейф для хранения паролей'">
-  <button mat-raised-button color="primary" routerLink="/safes/create">Создать сейф</button>
-</app-alert-action>
+<div class="my-5">
+  <p class="text-center text-2xl">Все сейфы</p>
+
+  <app-alert-action [text]="'Вы можете создать новый сейф для хранения паролей'">
+    <button mat-raised-button color="primary" routerLink="/safes/create">Создать сейф</button>
+  </app-alert-action>
+
+  <div
+    *ngIf="safes$ | async as safes; else loader"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+  >
+    <div
+      [routerLink]="[safe._id]"
+      *ngFor="let safe of safes"
+      class="flex flex-col text-center rounded-md p-2 bg-secondary cursor-pointer"
+    >
+      <span class="p-3">{{safe.name}}</span>
+
+      <button mat-raised-button color="primary" (click)="edit($event, safe)">
+        Редактировать
+      </button>
+    </div>
+  </div>
+
+  <ng-template #loader>
+    <mat-spinner class="my-5 mx-auto"></mat-spinner>
+  </ng-template>
+</div>

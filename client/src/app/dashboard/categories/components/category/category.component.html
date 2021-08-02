@@ -1,5 +1,5 @@
 <div class="my-5">
-  <ng-container *ngIf="category$ | async as category; else loader">
+  <ng-container *ngIf="category$ | async as category">
     <div class="flex items-center justify-between">
       <app-back-btn></app-back-btn>
 
@@ -10,8 +10,29 @@
 
     <p class="text-center text-2xl">{{category.name}}</p>
   </ng-container>
+</div>
+
+<div class="my-5">
+  <div
+    *ngIf="safes$ | async as safes; else loader"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+  >
+    <div
+      [routerLink]="['/safes', safe._id]"
+      *ngFor="let safe of safes"
+      class="flex flex-col text-center rounded-md p-2 bg-secondary cursor-pointer"
+    >
+      <span class="p-3">{{safe.name}}</span>
+
+      <button mat-raised-button color="primary" (click)="editSafe($event, safe)">
+        Редактировать
+      </button>
+    </div>
+  </div>
 
   <ng-template #loader>
     <mat-spinner class="my-5 mx-auto"></mat-spinner>
   </ng-template>
+
+
 </div>

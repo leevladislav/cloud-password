@@ -2,9 +2,12 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatOptionModule} from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import {SafesComponent} from './safes.component';
 import {SafesRoutingModule} from './safes.routing.module';
@@ -17,6 +20,7 @@ import {SafesService} from './services/safes.service';
 import {
   ValidatorMessageModule
 } from '../../shared-modules/validator-message/validator-message.module';
+import {CategoriesService} from '../categories/services/categories.service';
 
 
 @NgModule({
@@ -36,10 +40,15 @@ import {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    ValidatorMessageModule
+    ValidatorMessageModule,
+    MatSelectModule,
+    MatOptionModule,
+    FormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
-    SafesService
+    SafesService,
+    CategoriesService
   ]
 })
 export class SafesModule {

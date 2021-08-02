@@ -20,7 +20,11 @@ export class SafesService {
   }
 
   getById(id: string): Observable<SafeInterface> {
-    return this.http.get<SafeInterface>(`${this.apiUrl}/${id}`);
+    return this.http.get<SafeInterface>(`${this.apiUrl}/item/${id}`);
+  }
+
+  getByCategoryId(categoryId: string): Observable<SafeInterface[]> {
+    return this.http.get<SafeInterface[]>(`${this.apiUrl}/${categoryId}`);
   }
 
   create(data: SafeCreateParamsInterface): Observable<SafeInterface> {

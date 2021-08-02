@@ -16,18 +16,15 @@ export class DashboardComponent implements OnInit{
     // private router: Router,
     // private walletsService: WalletsService,
     // private categoriesService: CategoriesService,
-    // private expensesService: ExpensesService
   ) {
   }
 
   ngOnInit(): void {
     // this.subscribeOnCategories();
     // this.subscribeOnWallets();
-    // this.subscribeOnExpenses();
 
     // this.getCategories();
     // this.getWallets();
-    // this.getExpenses();
   }
 
   // subscribeOnWallets(): void {
@@ -44,14 +41,6 @@ export class DashboardComponent implements OnInit{
   //     .subscribe(() => this.getCategories());
 
   //   this.subscriptions.push(onCategoriesUpdatedSub);
-  // }
-
-  // subscribeOnExpenses(): void {
-  //   const onWalletsUpdatedSub = this.expensesService.expensesUpdated$
-  //     .pipe(filter((updated) => updated))
-  //     .subscribe(() => this.getExpenses());
-
-  //   this.subscriptions.push(onWalletsUpdatedSub);
   // }
 
   // getCategories(): void {

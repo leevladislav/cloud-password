@@ -1,1 +1,40 @@
-<p>safe works!</p>
+<div class="my-5">
+  <ng-container *ngIf="safe$ | async as safe; else loader">
+    <div class="flex items-center justify-between">
+      <app-back-btn></app-back-btn>
+
+      <div class="flex items-center">
+        <button mat-stroked-button (click)="editSafe($event, safe)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <div class="ml-4">
+          <button mat-stroked-button (click)="onDelete()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-center text-2xl">{{safe.name}}</p>
+
+    <div
+      class="flex flex-col text-center rounded-md p-2 bg-secondary max-w-sm mx-auto"
+    >
+      <span class="p-3">{{safe.email}}</span>
+
+      <span class="p-3">{{safe.password}}</span>
+
+      <span *ngFor="let item of safe.additional" class="p-3">
+        {{item.key}}
+        {{item.value}}
+      </span>
+    </div>
+  </ng-container>
+
+  <ng-template #loader>
+    <mat-spinner class="my-5 mx-auto"></mat-spinner>
+  </ng-template>
+</div>
+
+
