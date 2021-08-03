@@ -7,7 +7,7 @@ const CategorySchema = new Schema({
         required: true
     },
     user: {
-        ref: 'users',
+        ref: 'User',
         type: Schema.Types.ObjectId
     }
 });

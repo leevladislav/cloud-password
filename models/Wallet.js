@@ -16,7 +16,7 @@ const WalletSchema = new Schema({
         default: 'icon-home'
     },
     user: {
-        ref: 'users',
+        ref: 'User',
         type: Schema.Types.ObjectId
     }
 });

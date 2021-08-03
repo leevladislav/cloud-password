@@ -19,11 +19,11 @@ const PositionSchema = new Schema({
         required: true
     },
     category: {
-        ref: 'categories',
+        ref: 'Category',
         type: Schema.Types.ObjectId
     },
     user: {
-        ref: 'users',
+        ref: 'User',
         type: Schema.Types.ObjectId
     }
 });

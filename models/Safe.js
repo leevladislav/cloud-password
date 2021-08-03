@@ -34,11 +34,11 @@ const SafeSchema = new Schema({
         required: false
     },
     category: {
-        ref: 'categories',
+        ref: 'Category',
         type: Schema.Types.ObjectId
     },
     user: {
-        ref: 'users',
+        ref: 'User',
         type: Schema.Types.ObjectId
     }
 });
