@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const additionalSchema = new Schema({
+const AdditionalSchema = new Schema({
     key: {
         type: String,
         required: false
@@ -12,7 +12,7 @@ const additionalSchema = new Schema({
     },
 });
 
-const safeSchema = new Schema({
+const SafeSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
@@ -30,7 +30,7 @@ const safeSchema = new Schema({
         required: false
     },
     additional: {
-        type: [additionalSchema],
+        type: [AdditionalSchema],
         required: false
     },
     category: {
@@ -43,4 +43,4 @@ const safeSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('safe', safeSchema);
+module.exports = mongoose.model('Safe', SafeSchema);

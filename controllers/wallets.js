@@ -1,4 +1,4 @@
-const Wallet = require('../models/Wallets');
+const Wallet = require('../models/Wallet');
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.getAll = async function(req, res) {

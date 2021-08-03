@@ -13,8 +13,8 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run build --prefix client"
   },
   "keywords": [
+    "nodejs",
     "express",
-    "angular",
     "mongoDB"
   ],
   "author": "vladislavlee",

@@ -1,6 +1,6 @@
 {
   "name": "cloud-password",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
@@ -11,7 +11,16 @@
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
+  "keywords": [
+    "angular",
+    "typescript",
+    "rxjs",
+    "storybook",
+    "tailwindcss"
+  ],
   "private": true,
+  "author": "vladislavlee",
+  "license": "ISC",
   "dependencies": {
     "@angular/animations": "~12.0.1",
     "@angular/cdk": "^12.1.1",

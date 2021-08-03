@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const positionSchema = new Schema({
+const PositionSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -28,4 +28,4 @@ const positionSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('positions', positionSchema);
+module.exports = mongoose.model('Position', PositionSchema);

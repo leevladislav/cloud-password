@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categorySchema = new Schema({
+const WalletSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -21,4 +21,4 @@ const categorySchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('wallets', categorySchema);
+module.exports = mongoose.model('Wallet', WalletSchema);
