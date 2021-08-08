@@ -1,0 +1,18 @@
+<mat-icon
+  class="self-end transform rotate-90"
+  (click)="$event.stopPropagation()"
+  [matMenuTriggerFor]="menu">
+  more_vert
+</mat-icon>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['/safes', safe._id, 'edit']">
+    Редактировать
+  </button>
+
+  <button mat-menu-item (click)="onDelete()">
+    Удалить
+  </button>
+</mat-menu>
+
+<span class="p-3">{{safe?.name}}</span>

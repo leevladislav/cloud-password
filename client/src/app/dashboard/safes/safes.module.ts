@@ -21,6 +21,8 @@ import {
   ValidatorMessageModule
 } from '../../shared-modules/validator-message/validator-message.module';
 import {CategoriesService} from '../categories/services/categories.service';
+import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import {CategoriesService} from '../categories/services/categories.service';
     ListComponent,
     SafeComponent,
     ManageSafeComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,9 @@ import {CategoriesService} from '../categories/services/categories.service';
     MatSelectModule,
     MatOptionModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    _MatMenuDirectivesModule,
+    MatMenuModule
   ],
   providers: [
     SafesService,

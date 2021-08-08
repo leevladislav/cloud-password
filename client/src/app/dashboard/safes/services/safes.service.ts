@@ -10,6 +10,7 @@ import {SafeInterface} from '../interfaces/safe.interface';
 
 @Injectable()
 export class SafesService {
+
   private apiUrl = '/api/safe';
 
   constructor(private http: HttpClient) {

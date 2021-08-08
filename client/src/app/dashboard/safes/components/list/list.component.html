@@ -9,17 +9,12 @@
     *ngIf="safes$ | async as safes; else loader"
     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
   >
-    <div
+    <app-card
       [routerLink]="[safe._id]"
       *ngFor="let safe of safes"
+      [safe]="safe"
       class="flex flex-col text-center rounded-md p-2 bg-secondary cursor-pointer"
-    >
-      <span class="p-3">{{safe.name}}</span>
-
-      <button mat-raised-button color="primary" (click)="edit($event, safe)">
-        Редактировать
-      </button>
-    </div>
+    ></app-card>
   </div>
 
   <ng-template #loader>

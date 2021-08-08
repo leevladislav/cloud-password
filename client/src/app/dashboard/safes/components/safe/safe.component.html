@@ -4,7 +4,7 @@
       <app-back-btn></app-back-btn>
 
       <div class="flex items-center">
-        <button mat-stroked-button (click)="editSafe($event, safe)">
+        <button mat-stroked-button [routerLink]="['/safes', safe._id, 'edit']">
           <mat-icon>edit</mat-icon>
         </button>
 

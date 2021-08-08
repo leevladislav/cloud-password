@@ -1,36 +1,36 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {ActivatedRoute, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 import {SafeInterface} from '../../interfaces/safe.interface';
-import {SafesService} from '../../services/safes.service';
 import {
   ModalConfirmComponent
 } from '../../../../shared-modules/modals/modal-confirm/modal-confirm.component';
+import {SafesService} from '../../services/safes.service';
 import {ModalInfoService} from '../../../../core/services/modal-info.service';
 import {unsubscribe} from '../../../../core/utils/unsubscriber';
 
 @Component({
-  selector: 'app-safe',
-  templateUrl: './safe.component.html',
-  styleUrls: ['./safe.component.scss']
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
 })
-export class SafeComponent implements OnDestroy {
-  safeId = this.route.snapshot.params.id;
-
-  safe$: Observable<SafeInterface> = this.safesService.getById(this.safeId);
+export class CardComponent implements OnInit, OnDestroy {
+  @Input() safe!: SafeInterface;
 
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private safesService: SafesService,
     private modalInfoService: ModalInfoService,
     private dialog: MatDialog,
-    private router: Router,
+    private router: Router
   ) {
+  }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
@@ -46,12 +46,12 @@ export class SafeComponent implements OnDestroy {
 
     const dialogRefSub = dialogRef.afterClosed()
       .pipe(filter((result) => result))
-      .subscribe(() => this.delete(this.safeId));
+      .subscribe(() => this.delete());
     this.subscriptions.push(dialogRefSub);
   }
 
-  private delete(categoryId: string): void {
-    const deleteCategorySub = this.safesService.delete(categoryId)
+  private delete(): void {
+    const deleteCategorySub = this.safesService.delete(this.safe._id)
       .subscribe(
         response => this.modalInfoService.onSuccess(response.message, '', '/safes'),
         error => this.modalInfoService.onError(error.error.message)

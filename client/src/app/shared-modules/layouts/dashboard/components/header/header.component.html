@@ -26,6 +26,8 @@
         <span class="name" *ngIf="profile$ | async as profile">
           {{profile.name}}
         </span>
+
+        <mat-icon>arrow_drop_down</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu">
