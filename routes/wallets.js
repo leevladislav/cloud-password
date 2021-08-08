@@ -1,8 +1,8 @@
-const express = require('express');
+const Router = require('express').Router;
+const router = new Router();
 const passport = require('passport');
 const upload = require('../middleware/upload');
 const controller = require('../controllers/wallets');
-const router = express.Router();
 
 router.get('/', passport.authenticate('jwt', {session: false}), controller.getAll);
 router.get('/:id', passport.authenticate('jwt', {session: false}), controller.getById);

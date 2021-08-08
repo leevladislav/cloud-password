@@ -1,7 +1,7 @@
-const express = require('express');
+const Router = require('express').Router;
+const router = new Router();
 const passport = require('passport');
 const controller = require('../controllers/safe');
-const router = express.Router();
 
 router.get('/', passport.authenticate('jwt', {session: false}), controller.getAll);
 router.get('/:categoryId', passport.authenticate('jwt', {session: false}), controller.getByCategoryId);
