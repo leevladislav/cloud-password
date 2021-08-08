@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const {Schema, model} = require('mongoose');
 
 const AdditionalSchema = new Schema({
     key: {
@@ -43,4 +42,4 @@ const SafeSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Safe', SafeSchema);
+module.exports = model('Safe', SafeSchema);

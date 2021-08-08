@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const {Schema, model} = require('mongoose');
 
 const WalletSchema = new Schema({
     name: {
@@ -21,4 +20,4 @@ const WalletSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Wallet', WalletSchema);
+module.exports = model('Wallet', WalletSchema);
