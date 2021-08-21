@@ -4,7 +4,7 @@ import {Store} from '@ngrx/store';
 
 import {SafeInterface} from '../../interfaces/safe.interface';
 import {SafesService} from '../../services/safes.service';
-import {getSafesList} from '../../../../reducers/safes';
+import {getSafesList} from '../../store/safes.actions';
 
 @Component({
   selector: 'app-list',

@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {EffectsModule} from '@ngrx/effects';
-import {reducers, metaReducers} from './reducers';
+import {reducers, metaReducers} from './root-store/app.reducers';
 import {AppEffects} from './app.effects';
 
 import {AppRoutingModule} from './app-routing.module';
