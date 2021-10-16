@@ -9,8 +9,8 @@ import {ModalInfoService} from '../../../../core/services/modal-info.service';
 import {SafesService} from '../../services/safes.service';
 import {unsubscribe} from '../../../../core/utils/unsubscriber';
 import {
-  SafeCreateParamsInterface,
-  SafeUpdateParamsInterface
+  CreateSafeParamsInterface,
+  UpdateSafeParamsInterface
 } from '../../interfaces/safe-params.interface';
 import {SafeInterface} from '../../interfaces/safe.interface';
 import {
@@ -140,7 +140,7 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
   }
 
   private create(): void {
-    const data: SafeCreateParamsInterface = {...this.form.value};
+    const data: CreateSafeParamsInterface = {...this.form.value};
 
     const createSafeSub = this.safesService.create(data)
       .subscribe(
@@ -162,7 +162,7 @@ export class ManageSafeComponent implements OnInit, OnDestroy {
   }
 
   private update(): void {
-    const data: SafeUpdateParamsInterface = {
+    const data: UpdateSafeParamsInterface = {
       id: this.safe._id,
       ...this.form.value,
     };

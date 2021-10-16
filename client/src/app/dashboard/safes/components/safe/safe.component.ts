@@ -1,16 +1,17 @@
 import {Component, OnDestroy} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {Observable, Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
 
 import {SafeInterface} from '../../interfaces/safe.interface';
 import {SafesService} from '../../services/safes.service';
 import {
   ModalConfirmComponent
 } from '../../../../shared-modules/modals/modal-confirm/modal-confirm.component';
-import {ModalInfoService} from '../../../../core/services/modal-info.service';
 import {unsubscribe} from '../../../../core/utils/unsubscriber';
+import {deleteSafe} from '../../store/safes.actions';
 
 @Component({
   selector: 'app-safe',
@@ -27,9 +28,8 @@ export class SafeComponent implements OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private safesService: SafesService,
-    private modalInfoService: ModalInfoService,
     private dialog: MatDialog,
-    private router: Router,
+    private store: Store,
   ) {
   }
 
@@ -46,16 +46,7 @@ export class SafeComponent implements OnDestroy {
 
     const dialogRefSub = dialogRef.afterClosed()
       .pipe(filter((result) => result))
-      .subscribe(() => this.delete(this.safeId));
+      .subscribe(() => this.store.dispatch(deleteSafe({id: this.safeId})));
     this.subscriptions.push(dialogRefSub);
-  }
-
-  private delete(categoryId: string): void {
-    const deleteCategorySub = this.safesService.delete(categoryId)
-      .subscribe(
-        response => this.modalInfoService.onSuccess(response.message, '', '/safes'),
-        error => this.modalInfoService.onError(error.error.message)
-      );
-    this.subscriptions.push(deleteCategorySub);
   }
 }

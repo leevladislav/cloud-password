@@ -8,6 +8,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {EffectsModule} from '@ngrx/effects';
+import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
 
 import {SafesComponent} from './safes.component';
 import {SafesRoutingModule} from './safes.routing.module';
@@ -21,8 +23,8 @@ import {
   ValidatorMessageModule
 } from '../../shared-modules/validator-message/validator-message.module';
 import {CategoriesService} from '../categories/services/categories.service';
-import {_MatMenuDirectivesModule, MatMenuModule} from '@angular/material/menu';
 import { CardComponent } from './components/card/card.component';
+import {SafesEffects} from './store/safes.effects';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { CardComponent } from './components/card/card.component';
     FormsModule,
     MatProgressSpinnerModule,
     _MatMenuDirectivesModule,
-    MatMenuModule
+    MatMenuModule,
+    EffectsModule.forFeature([SafesEffects])
   ],
   providers: [
     SafesService,

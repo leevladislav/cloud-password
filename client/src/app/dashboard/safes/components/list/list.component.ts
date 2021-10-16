@@ -3,8 +3,7 @@ import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 
 import {SafeInterface} from '../../interfaces/safe.interface';
-import {SafesService} from '../../services/safes.service';
-import {getSafesList} from '../../store/safes.actions';
+import {safesListSelector} from '../../store/safes.selectors';
 
 @Component({
   selector: 'app-list',
@@ -12,12 +11,8 @@ import {getSafesList} from '../../store/safes.actions';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  safes$: Observable<SafeInterface[]> = this.safesService.fetch();
+  safes$: Observable<SafeInterface[]> = this.store.select(safesListSelector);
 
-  constructor(
-    private safesService: SafesService,
-    private store: Store,
-  ) {
-    this.store.dispatch(getSafesList());
+  constructor(private store: Store) {
   }
 }

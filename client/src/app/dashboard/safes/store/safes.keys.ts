@@ -1,0 +1,1 @@
+export const safesListKey = 'safesList';
