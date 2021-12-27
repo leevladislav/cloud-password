@@ -82,3 +82,8 @@ $cloud-password-theme: mat.define-light-theme(
   )
 );
 @include mat.all-component-themes($cloud-password-theme);
+
+$config: mat.define-typography-config(
+  $font-family: '"Roboto", sans-serif',
+);
+@include mat.all-component-typographies($config);
