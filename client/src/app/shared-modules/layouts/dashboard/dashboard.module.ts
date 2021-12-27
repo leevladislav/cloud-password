@@ -14,13 +14,13 @@ import {DashboardComponent} from './dashboard.component';
     DashboardComponent,
     HeaderComponent,
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+    ]
 })
 export class DashboardModule {
 }

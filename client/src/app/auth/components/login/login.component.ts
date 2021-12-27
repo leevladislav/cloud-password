@@ -15,8 +15,8 @@ import {UserLoginInterface} from '../../interfaces/user-login.interface';
 })
 export class LoginComponent implements OnDestroy {
   form: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    email: ['vladislavlee.xx@gmail.com', [Validators.required, Validators.email]],
+    password: ['asdASD123!', [Validators.required, Validators.minLength(6)]],
   });
 
   hidePassword = true;

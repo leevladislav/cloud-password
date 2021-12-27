@@ -15,11 +15,13 @@ module.exports = {
       },
     },
     backgroundColor: () => ({
-      primary: '#f5f8fc',
-      secondary: '#e5f5f9',
+      primary: '#ffffff',
+      secondary: '#000000',
+      accent: '#f6f6f6',
     }),
     colors: {
-      primary: '#599de4',
+      primary: '#000000',
+      secondary: '#ffffff',
     },
     borderColor: () => ({
       primary: '#e2e2e2',

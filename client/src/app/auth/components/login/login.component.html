@@ -1,56 +1,55 @@
-<div class="bg-secondary rounded-lg p-4 w-screen max-w-lg">
-  <p class="text-lg text-center">Авторизация</p>
+<p class="text-xl text-center font-medium">Авторизация</p>
 
-  <form [formGroup]="form" (ngSubmit)="onLogin()" class="flex flex-col items-center">
-    <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Email:" formControlName="email" required />
-      <mat-error>
-        <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
-      </mat-error>
-    </mat-form-field>
+<form [formGroup]="form" (ngSubmit)="onLogin()" class="flex flex-col items-center">
+  <mat-form-field class="w-full mb-2">
+    <input
+      matInput
+      placeholder="Email:"
+      formControlName="email"
+      required
+    />
+    <mat-error>
+      <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
 
-    <mat-form-field class="w-full mb-2">
-      <input
-        matInput
-        placeholder="Пароль:"
-        formControlName="password"
-        [type]="hidePassword ? 'password' : 'text'"
-        required
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hidePassword = !hidePassword"
-        type="button"
-        class="toggle-password"
-      >
-        <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-      <mat-error>
-        <app-validator-message
-          [key]="'password'"
-          [field]="form.get('password')"
-        ></app-validator-message>
-      </mat-error>
-    </mat-form-field>
-
+  <mat-form-field class="w-full mb-2">
+    <input
+      matInput
+      placeholder="Пароль:"
+      formControlName="password"
+      [type]="hidePassword ? 'password' : 'text'"
+      required
+    />
     <button
-      mat-raised-button
-      color="primary"
-      [disabled]="form.invalid || form.disabled"
-      type="submit"
-      class="w-full"
+      mat-icon-button
+      matSuffix
+      (click)="hidePassword = !hidePassword"
+      type="button"
+      class="toggle-password"
     >
-      Войти
+      <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error>
+      <app-validator-message
+        [key]="'password'"
+        [field]="form.get('password')"
+      ></app-validator-message>
+    </mat-error>
+  </mat-form-field>
 
-    <div class="mt-4">
-      Новый пользователь?
-      <a class="text-primary" routerLink="/auth/registration">Зарегистрироваться</a>
-    </div>
-  </form>
-</div>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || form.disabled"
+    type="submit"
+    class="w-full"
+  >
+    Войти
+  </button>
 
-vladislavlee.xx@gmail.com
-<br>
-asdASD123!
+  <div class="mt-4 text-center">
+    Новый пользователь?
+    <a class="text-primary" routerLink="/auth/registration">Зарегистрироваться</a>
+  </div>
+</form>

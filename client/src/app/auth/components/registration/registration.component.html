@@ -1,86 +1,84 @@
-<div class="bg-secondary rounded-lg py-5 px-4 w-screen max-w-lg">
-  <p class="text-lg text-center">Регистрация</p>
+<p class="text-xl text-center font-medium">Регистрация</p>
 
-  <form [formGroup]="form" (ngSubmit)="onRegister()" class="flex flex-col items-center">
+<form [formGroup]="form" (ngSubmit)="onRegister()" class="flex flex-col items-center">
+  <mat-form-field class="w-full mb-2">
+    <input matInput placeholder="Имя:" formControlName="name" required/>
+    <mat-error>
+      <app-validator-message [key]="'name'" [field]="form.get('name')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-full mb-2">
+    <input matInput placeholder="Email:" formControlName="email" required/>
+    <mat-error>
+      <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
+    </mat-error>
+  </mat-form-field>
+
+  <fieldset formGroupName="newPassword" class="w-full">
     <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Имя:" formControlName="name" required />
+      <input
+        matInput
+        placeholder="Пароль:"
+        formControlName="password"
+        [type]="hideNewPassword ? 'password' : 'text'"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideNewPassword = !hideNewPassword"
+        type="button"
+        class="toggle-password"
+      >
+        <mat-icon>{{ hideNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
       <mat-error>
-        <app-validator-message [key]="'name'" [field]="form.get('name')"></app-validator-message>
+        <app-validator-message
+          [key]="'password'"
+          [field]="form.get('newPassword')?.get('password')"
+        ></app-validator-message>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-2">
-      <input matInput placeholder="Email:" formControlName="email" required />
+      <input
+        matInput
+        placeholder="Повторить пароль:"
+        formControlName="repeatPassword"
+        [type]="hideRepeatNewPassword ? 'password' : 'text'"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
+        type="button"
+        class="toggle-password"
+      >
+        <mat-icon>{{ hideRepeatNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
       <mat-error>
-        <app-validator-message [key]="'email'" [field]="form.get('email')"></app-validator-message>
+        <app-validator-message
+          [key]="'repeatPassword'"
+          [field]="form.get('newPassword')?.get('repeatPassword')"
+        ></app-validator-message>
       </mat-error>
     </mat-form-field>
+  </fieldset>
 
-    <fieldset formGroupName="newPassword">
-      <mat-form-field class="w-full mb-2">
-        <input
-          matInput
-          placeholder="Пароль:"
-          formControlName="password"
-          [type]="hideNewPassword ? 'password' : 'text'"
-          required
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hideNewPassword = !hideNewPassword"
-          type="button"
-          class="toggle-password"
-        >
-          <mat-icon>{{ hideNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-        <mat-error>
-          <app-validator-message
-            [key]="'password'"
-            [field]="form.get('newPassword')?.get('password')"
-          ></app-validator-message>
-        </mat-error>
-      </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="form.invalid || form.disabled"
+    type="submit"
+    class="w-full"
+  >
+    Зарегистрироваться
+  </button>
 
-      <mat-form-field class="w-full mb-2">
-        <input
-          matInput
-          placeholder="Повторить пароль:"
-          formControlName="repeatPassword"
-          [type]="hideRepeatNewPassword ? 'password' : 'text'"
-          required
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
-          type="button"
-          class="toggle-password"
-        >
-          <mat-icon>{{ hideRepeatNewPassword ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-        <mat-error>
-          <app-validator-message
-            [key]="'repeatPassword'"
-            [field]="form.get('newPassword')?.get('repeatPassword')"
-          ></app-validator-message>
-        </mat-error>
-      </mat-form-field>
-    </fieldset>
-
-    <button
-      mat-raised-button
-      color="primary"
-      [disabled]="form.invalid || form.disabled"
-      type="submit"
-      class="w-full"
-    >
-      Зарегистрироваться
-    </button>
-
-    <div class="mt-4">
-      Уже есть аккаунт?
-      <a class="text-primary" routerLink="/auth/login">Авторизоваться</a>
-    </div>
-  </form>
-</div>
+  <div class="mt-4 text-center">
+    Уже есть аккаунт?
+    <a class="text-primary" routerLink="/auth/login">Авторизоваться</a>
+  </div>
+</form>
